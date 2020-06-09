@@ -27,7 +27,7 @@ router.post('/', function(req,res){
 //         res.status(200).send(user);
 //     })
 // })
-router.get('/all',function(req,res){
+router.get('/:id',function(req,res){
     User.find({},function(err,users){
         if (err) return res.status(500).send("User 전체 조회 실패.");
         res.status(200).send(users);

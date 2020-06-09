@@ -12,8 +12,22 @@
 </template>
 <script>
 export default {
+  mounted(){
+    var url='ws://echo.websocket.org';
+      var url2='ws://localhost:3000/api/soc'
+      //'ws://localhost:8080'
+      this.ws = new WebSocket(url2);
+      var log=document.getElementsByClassName('log');
+      this.ws.onopen = (event)=>{
+          //this.ws.send('');
+      }
+      this.ws.onmessage = (mes)=>{
+        log[0].innerHTML += mes.data+"<br>";
+      }
+  },
   data(){
     return{
+      ws,
       tt:[],
     }
   },
@@ -24,47 +38,20 @@ export default {
       var data=textBox[0].value;
       var id = idBox[0].value;
       textBox[0].value='';
-      // var form = document.createElement('form');
-      // form.setAttribute('method','POST');
-      // form.setAttribute('action','/api/insert');
-
-      // var idField = document.createElement('input');
-      // idField.setAttribute('type','hidden');
-      // idField.setAttribute('name','id');
-      // idField.setAttribute('value',id);
-
-      // var dataField = document.createElement('input');
-      // dataField.setAttribute('type','hidden');
-      // dataField.setAttribute('name','data');
-      // dataField.setAttribute('value',data);
       
-      // form.appendChild(idField);
-      // form.appendChild(dataField);
-      // document.body.appendChild(form);
-      // alert(form.id.value);
-      // form.submit();
-      // this.id=id;
-      // this.data=data;
-      
-      var form = new FormData();
-      form.append('id','12');
-      form.append('data','aaaaaaaaaaaaaaaaaaaa');
-      this.$http.post('/api/insert',
-          'id='+id+'&data='+data
-      ).then((res)=>{
-        alert('yeah~'+res);
-      })
+      // var form = new FormData();
+      // form.append('id','12');
+      // form.append('data','aaaaaaaaaaaaaaaaaaaa');
+      // this.$http.post('/api/insert',
+      //     'id='+id+'&data='+data
+      // ).then((res)=>{
+      //  // alert('yeah~'+res);
+      // })
+      this.ws.send('{ \"id\" : \"'+id+'\", \"data\" : \"'+data+'\"}');
     },
     getget(){
       var log=document.getElementsByClassName('log');
-
-      this.$http.get('/api/insert/12')
-          .then((res) => {
-            this.tt = res.data;
-            alert("res data = "+res.data);
-      })
-      alert("this tt = "+this.tt);
-      log[0].innerHTML=this.tt;
+      
     }
   },
 }
@@ -77,10 +64,12 @@ export default {
   background: black;
   padding: 50px;
   .log{
+    text-align: left;
     background: blanchedalmond;
     position:relative;
     width:500px;
     height:500px;
+    padding:5px;
   }
   .id{
     width : 100px;

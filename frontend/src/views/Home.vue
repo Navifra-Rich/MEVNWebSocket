@@ -14,7 +14,8 @@
 export default {
   mounted(){
     var url='ws://echo.websocket.org';
-      var url2='ws://34.71.76.221/:3000/api/soc'
+      var url2='ws://34.71.76.221:3000/api/soc'
+      //'ws://localhost:3000/api/soc'
       this.ws = new WebSocket(url2);
       var log=document.getElementsByClassName('log');
       this.ws.onopen = (event)=>{

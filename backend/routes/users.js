@@ -15,4 +15,8 @@ router.get('/:id',function(req,res){
   }
   res.send(str);
 })
+router.post('/',function(req,res){
+  console.log('aaaaaaaaaaaa');
+  res.send('aaaaaaaaaaaaaaaaaaaaaaaa');
+})
 module.exports = router;

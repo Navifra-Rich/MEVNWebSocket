@@ -11,7 +11,8 @@ app.use(express.static('public'));
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://user1:pass1!@cluster0-qkh1p.gcp.mongodb.net/dbname?retryWrites=true&w=majority', { useNewUrlParser: true,useUnifiedTopology: true },function(err) {
+mongoose.connect('mongodb+srv://user1:pass1!@cluster0-qkh1p.gcp.mongodb.net/dbname?retryWrites=true&w=majority', 
+{ useNewUrlParser: true,useUnifiedTopology: true },function(err) {
       if (err) {
         console.error('mongodb connection error!!!!', err);
       }

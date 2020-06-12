@@ -19,8 +19,6 @@ module.exports = function(_server){
                 client.send(echo);
                 console.log("cli : "+client);
             })
-            
-            //ws.send(echo);
         });
 
         ws.on('error',function(err){

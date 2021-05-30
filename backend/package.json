@@ -13,7 +13,7 @@
     "mongodb": "^3.5.8",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
-    "ws": "^7.3.0"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "mongoose": "^5.9.18"
